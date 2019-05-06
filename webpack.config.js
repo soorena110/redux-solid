@@ -26,6 +26,8 @@ module.exports = (env) => {
         output: {
             path: path.join(__dirname, !isDevelopementMode ? './lib' : './src/_dev/js'),
             filename: 'index.js',
+            library: 'ReducerCreator',
+            libraryTarget: "umd"
         },
         plugins: [new UglifyJsPlugin()]
     };
