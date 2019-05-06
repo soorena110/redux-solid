@@ -86,10 +86,12 @@ const getStandardActionType = (action: any, supressWarnings: boolean) => {
 
 export const addHelpReactionToReactionDictionary = (reactions: { [actionType: string]: Reaction }) => {
     const helpReaction = Object.getOwnPropertyNames(reactions)
-        .filter(key => key.startsWith('Help'))
-        .map(key => reactions[key]);
-    reactions['Help'] = (state, action) => {
-        helpReaction.forEach(reaction => reaction(state, action));
+        .filter(key => key.startsWith('Help'));
+
+    reactions['Help'] = (state) => {
+        console.log('%cHelp action types are :', 'color:deepskyblue');
+        helpReaction.forEach(help => console.log(help));
         return state;
-    }
+    };
+    reactions['help'] = reactions['Help'];
 };

@@ -1,6 +1,6 @@
 {
   "name": "redux-solid",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A redux middleware and a SOLID (in object orient design) way to use redux. ;)",
   "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
@@ -32,9 +32,7 @@
     "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.1",
-    "redux": "^4.0.1"
-  },
-  "dependencies": {
+    "redux": "^4.0.1",
     "@types/redux": "^3.6.0"
   }
 }

@@ -1,6 +1,6 @@
 class ReduxLogger {
     static groupCollapse(event: string, text: string = '') {
-        console.group('%c Redux  %c ' + event + ' %c' + text,
+        console.groupCollapsed('%c Redux  %c ' + event + ' %c' + text,
             'background:#7700FF',
             'color:#' + ReduxLogger.getSudoColorByText(event),
             'color:#FFFFFF');
