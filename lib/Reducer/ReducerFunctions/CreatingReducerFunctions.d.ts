@@ -1,12 +1,5 @@
 import { ReducerCreatorOptions } from "../ReducerCreator";
-export declare type CacheMethodTypes = 'none' | 'localStorage';
-export declare type Reaction = (state: any, action: any) => any;
-export declare type ReducerType = (state: any, action: any) => any;
-export interface CachingOptions {
-    cacheMethod: CacheMethodTypes;
-    cacheName: string;
-    _notYet_cacheExpireDate?: never;
-}
+import { CachingOptions, Reaction, ReducerType } from "../Common/Models";
 export declare const createReducerWithInitialState: (reactions: {
     [actionType: string]: Reaction;
 }, initialState: any, reducerCreatorOptions: ReducerCreatorOptions) => (state: any, action: any) => any;

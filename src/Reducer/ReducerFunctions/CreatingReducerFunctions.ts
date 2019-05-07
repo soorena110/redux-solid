@@ -1,14 +1,5 @@
 import {ReducerCreatorOptions} from "../ReducerCreator";
-
-export type CacheMethodTypes = 'none' | 'localStorage';
-export type Reaction = (state: any, action: any) => any;
-export type ReducerType = (state: any, action: any) => any;
-
-export interface CachingOptions {
-    cacheMethod: CacheMethodTypes;
-    cacheName: string;
-    _notYet_cacheExpireDate?: never;
-}
+import {CachingOptions, Reaction, ReducerType} from "../Common/Models";
 
 export const createReducerWithInitialState = (reactions: { [actionType: string]: Reaction },
                                               initialState: any = {},
@@ -20,9 +11,7 @@ export const createReducerWithInitialState = (reactions: { [actionType: string]:
             action.type = reactionKey;
 
         const relatedReducer = reactions[reactionKey];
-        const newState = relatedReducer ? relatedReducer(state, action) : state;
-
-        return newState
+        return relatedReducer ? relatedReducer(state, action) : state
     }
 };
 

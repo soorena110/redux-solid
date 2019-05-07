@@ -1,16 +1,23 @@
-import {BooleanReducerOptions, getBooleanReducerActionTypeReactions} from "./ReducerTypes/BooleanReducer";
 import {
     addCachingToReducer,
     addHelpReactionToReactionDictionary,
-    CachingOptions,
     createReducerWithInitialState,
-    Reaction,
     readLastSavedState
-} from "./Common/CreatingReducerFunctions";
-import {DictionaryReducerOptions, getDictionaryReducerActionTypeReactions} from "./ReducerTypes/DictionaryReducer";
-import {getVariableReducerActionTypeReactions, VariableReducerOptions} from "./ReducerTypes/ValueReducer";
-import {getObjectReducerActionTypeReactions, ObjectReducerOptions} from "./ReducerTypes/ObjectReducer";
-import {ArrayReducerOptions, getArrayReducerActionTypeReactions} from "./ReducerTypes/ArrayReducer";
+} from "./ReducerFunctions/CreatingReducerFunctions";
+import {
+    ArrayReducerOptions,
+    BooleanReducerOptions,
+    CachingOptions,
+    DictionaryReducerOptions,
+    ObjectReducerOptions,
+    Reaction,
+    VariableReducerOptions
+} from "./Common/Models";
+import {getDictionaryReducerActionTypeReactions} from "./ReducerTypes/DictionaryReducer";
+import {getBooleanReducerActionTypeReactions} from "./ReducerTypes/BooleanReducer";
+import {getVariableReducerActionTypeReactions} from "./ReducerTypes/ValueReducer";
+import {getObjectReducerActionTypeReactions} from "./ReducerTypes/ObjectReducer";
+import {getArrayReducerActionTypeReactions} from "./ReducerTypes/ArrayReducer";
 
 interface ReducerOptions {
     cachingOptions?: Partial<CachingOptions>

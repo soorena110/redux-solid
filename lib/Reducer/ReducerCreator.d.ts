@@ -1,9 +1,4 @@
-import { BooleanReducerOptions } from "./ReducerTypes/BooleanReducer";
-import { CachingOptions, Reaction } from "./Common/CreatingReducerFunctions";
-import { DictionaryReducerOptions } from "./ReducerTypes/DictionaryReducer";
-import { VariableReducerOptions } from "./ReducerTypes/ValueReducer";
-import { ObjectReducerOptions } from "./ReducerTypes/ObjectReducer";
-import { ArrayReducerOptions } from "./ReducerTypes/ArrayReducer";
+import { ArrayReducerOptions, BooleanReducerOptions, CachingOptions, DictionaryReducerOptions, ObjectReducerOptions, Reaction, VariableReducerOptions } from "./Common/Models";
 interface ReducerOptions {
     cachingOptions?: Partial<CachingOptions>;
 }
