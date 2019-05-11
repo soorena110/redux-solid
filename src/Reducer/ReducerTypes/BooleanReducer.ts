@@ -16,6 +16,7 @@ export const getBooleanReducerActionTypeReactions = (name: string,
             const error = checkValidationOfBooleanAction(action, !!booleanOptions.notUndefined);
             if (!reducerCreatorOptions.supressWarnings && error) {
                 console.error(error);
+                console.error({state, action});
                 return state;
             }
             const rawReaction = getReactionOfActionType(name, at, booleanOptions);

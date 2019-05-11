@@ -1,5 +1,5 @@
-import {DictionaryActionTypes} from "../Common/Models";
-import {onlyOneExists} from "./_Common";
+import {DictionaryActionTypes} from "../../Common/Models";
+import {onlyOneExists} from "../../HelpAndValidation/_Common";
 
 export const getDictionaryHelpReaction = (actionTypes: DictionaryActionTypes[], name: string, dataObjectKeyName: string) => {
     return (state: any) => {

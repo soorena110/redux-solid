@@ -24,7 +24,7 @@ module.exports = (env) => {
             extensions: ['*', '.ts']
         },
         output: {
-            path: path.join(__dirname, !isDevelopementMode ? './lib' : './src/_dev/js'),
+            path: path.join(__dirname, !isDevelopementMode ? './dist' : './src/_dev/js'),
             filename: 'index.js',
             library: 'ReduxSolid',
             libraryTarget: "umd"

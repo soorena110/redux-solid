@@ -13,7 +13,7 @@ import {
     Reaction,
     VariableReducerOptions
 } from "./Common/Models";
-import {getDictionaryReducerActionTypeReactions} from "./ReducerTypes/DictionaryReducer";
+import {getDictionaryReducerActionTypeReactions} from "./ReducerTypes/Dictionary";
 import {getBooleanReducerActionTypeReactions} from "./ReducerTypes/BooleanReducer";
 import {getVariableReducerActionTypeReactions} from "./ReducerTypes/ValueReducer";
 import {getObjectReducerActionTypeReactions} from "./ReducerTypes/ObjectReducer";

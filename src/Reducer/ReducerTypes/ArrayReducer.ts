@@ -17,6 +17,7 @@ export const getArrayReducerActionTypeReactions = (
             const error = checkValidationOfArrayAction(action);
             if (!reducerCreatorOptions.supressWarnings && error) {
                 console.error(error);
+                console.error({state, action});
                 return state;
             }
             const rawReaction = getReactionOfActionType(name, at);

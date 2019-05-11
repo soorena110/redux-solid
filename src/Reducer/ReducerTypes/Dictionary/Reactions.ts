@@ -1,5 +1,3 @@
-import {addBaseOptionsToReducer} from "./_Common";
-import {ReducerCreatorOptions} from "../ReducerCreator";
 import {
     addKeyValuesToDictionaryIfNotExist,
     addOrMergeKeyValuesToDictionary,
@@ -10,40 +8,15 @@ import {
     removeKeyFromDictionaryIfExists,
     replaceKeyValuesToDictionaryIfExists
 } from "./_DictionaryOperations";
-import {DictionaryActionTypes, DictionaryReducerOptions} from "../Common/Models";
-import {checkValidationOfDictionaryAction, getDictionaryHelpReaction} from "../HelpAndValidation/DictionaryReducer";
+import {DictionaryActionTypes, DictionaryReducerOptions} from "../../Common/Models";
 
 
-export const getDictionaryReducerActionTypeReactions = (
-    name: string, dataObjectKeyName: string, reducerCreatorOptions: ReducerCreatorOptions,
-    dictionaryOptions: DictionaryReducerOptions = {}) => {
-
-    const reactions = {} as { [actionType: string]: (state: any, action: any) => any };
-    const actionTypes = dictionaryOptions.actionTypes ||
-        ['Set', 'Add', 'Add/Ignore', 'Add/Replace', 'Add/Merge', 'Replace', 'Merge', 'Remove', 'Clear'];
-    actionTypes.forEach(at => {
-        reactions[`${at}_${name}`] = (state: any, action: any) => {
-            const error = checkValidationOfDictionaryAction(action, dataObjectKeyName);
-            if (!reducerCreatorOptions.supressWarnings && error) {
-                console.error(error);
-                return state;
-            }
-            const rawReaction = getReactionOfActionType(name, at, dataObjectKeyName, dictionaryOptions);
-            return addBaseOptionsToReducer(rawReaction, dictionaryOptions)(state, action);
-        }
-    });
-
-    reactions['Help_' + name] = getDictionaryHelpReaction(actionTypes, name, dataObjectKeyName);
-
-    return reactions;
-};
-
-const getReactionOfActionType = (name: string, actionTypes: DictionaryActionTypes,
-                                 dataObjectKeyName: string, dictionaryOptions: DictionaryReducerOptions) => {
+export const getReactionOfActionType = (name: string, actionTypes: DictionaryActionTypes,
+                                        dataObjectKeyName: string, dictionaryOptions: DictionaryReducerOptions) => {
     switch (actionTypes) {
         case 'Set':
             return (state: any, action: any) => {
-                const newDictionary = createEmptyDictionary(dictionaryOptions.isArraDictionary);
+                const newDictionary = createEmptyDictionary(dictionaryOptions.isArrayDictionary);
                 const keyValues = getKeyValuesFromAction(action, dataObjectKeyName);
                 addOrReplaceKeyValuesToDictionary(newDictionary, keyValues);
                 return {...state, [name]: newDictionary}
@@ -51,32 +24,32 @@ const getReactionOfActionType = (name: string, actionTypes: DictionaryActionType
         case 'Add':
         case 'Add/Replace':
             return (state: any, action: any) => {
-                if (!state[name]) state[name] = createEmptyDictionary(dictionaryOptions.isArraDictionary);
+                if (!state[name]) state[name] = createEmptyDictionary(dictionaryOptions.isArrayDictionary);
                 const keyValues = getKeyValuesFromAction(action, dataObjectKeyName);
                 const isItemAddedOrRemoved = addOrReplaceKeyValuesToDictionary(state[name], keyValues);
 
                 if (isItemAddedOrRemoved || dictionaryOptions.recreateDictionaryOnObjectChange != false)
-                    state[name] = recreateDictionary(state[name], dictionaryOptions.isArraDictionary);
+                    state[name] = recreateDictionary(state[name], dictionaryOptions.isArrayDictionary);
                 return {...state}
             };
         case 'Add/Ignore':
             return (state: any, action: any) => {
-                if (!state[name]) state[name] = createEmptyDictionary(dictionaryOptions.isArraDictionary);
+                if (!state[name]) state[name] = createEmptyDictionary(dictionaryOptions.isArrayDictionary);
                 const keyValues = getKeyValuesFromAction(action, dataObjectKeyName);
                 const isItemAddedOrRemoved = addKeyValuesToDictionaryIfNotExist(state[name], keyValues);
 
                 if (isItemAddedOrRemoved || dictionaryOptions.recreateDictionaryOnObjectChange != false)
-                    state[name] = recreateDictionary(state[name], dictionaryOptions.isArraDictionary);
+                    state[name] = recreateDictionary(state[name], dictionaryOptions.isArrayDictionary);
                 return {...state}
             };
         case 'Add/Merge':
             return (state: any, action: any) => {
-                if (!state[name]) state[name] = createEmptyDictionary(dictionaryOptions.isArraDictionary);
+                if (!state[name]) state[name] = createEmptyDictionary(dictionaryOptions.isArrayDictionary);
                 const keyValues = getKeyValuesFromAction(action, dataObjectKeyName);
                 const isItemAddedOrRemoved = addOrMergeKeyValuesToDictionary(state[name], keyValues);
 
                 if (isItemAddedOrRemoved || dictionaryOptions.recreateDictionaryOnObjectChange != false)
-                    state[name] = recreateDictionary(state[name], dictionaryOptions.isArraDictionary);
+                    state[name] = recreateDictionary(state[name], dictionaryOptions.isArrayDictionary);
                 return {...state}
             };
         case 'Replace':
@@ -85,7 +58,7 @@ const getReactionOfActionType = (name: string, actionTypes: DictionaryActionType
                 const isItemAddedOrRemoved = replaceKeyValuesToDictionaryIfExists(state[name], keyValues);
 
                 if (isItemAddedOrRemoved || dictionaryOptions.recreateDictionaryOnObjectChange != false)
-                    state[name] = recreateDictionary(state[name], dictionaryOptions.isArraDictionary);
+                    state[name] = recreateDictionary(state[name], dictionaryOptions.isArrayDictionary);
                 return {...state}
             };
         case 'Merge':
@@ -94,7 +67,7 @@ const getReactionOfActionType = (name: string, actionTypes: DictionaryActionType
                 const isItemAddedOrRemoved = mergeKeyValuesToDictionaryIfExists(state[name], keyValues);
 
                 if (isItemAddedOrRemoved || dictionaryOptions.recreateDictionaryOnObjectChange != false)
-                    state[name] = recreateDictionary(state[name], dictionaryOptions.isArraDictionary);
+                    state[name] = recreateDictionary(state[name], dictionaryOptions.isArrayDictionary);
                 return {...state}
             };
         case 'Remove':
@@ -103,12 +76,12 @@ const getReactionOfActionType = (name: string, actionTypes: DictionaryActionType
                 const isItemAddedOrRemoved = removeKeyFromDictionaryIfExists(state[name], keyValues);
 
                 if (isItemAddedOrRemoved || dictionaryOptions.recreateDictionaryOnObjectChange != false)
-                    state[name] = recreateDictionary(state[name], dictionaryOptions.isArraDictionary);
+                    state[name] = recreateDictionary(state[name], dictionaryOptions.isArrayDictionary);
                 return {...state}
             };
         case 'Clear':
             return (state: any) => {
-                return {...state, [name]: createEmptyDictionary(dictionaryOptions.isArraDictionary)}
+                return {...state, [name]: createEmptyDictionary(dictionaryOptions.isArrayDictionary)}
             };
         default:
             const exhaustiveCheck: never = actionTypes;
@@ -146,4 +119,3 @@ const getKeyValuesFromAction = (action: any, dataObjectKeyName: string): { key: 
     }
     return [] // for DictionaryActionType5
 };
-

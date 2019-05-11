@@ -42,7 +42,7 @@ export interface BooleanReducerOptions extends BaseReducerOptions {
 export interface DictionaryReducerOptions extends BaseReducerOptions {
     actionTypes?: DictionaryActionTypes[];
     recreateDictionaryOnObjectChange?: boolean;
-    isArraDictionary?: boolean;
+    isArrayDictionary?: boolean;
 }
 
 export interface ObjectReducerOptions extends BaseReducerOptions {

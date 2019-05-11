@@ -15,6 +15,7 @@ export const getObjectReducerActionTypeReactions = (name: string,
             const error = checkValidationOfObjectAction(action, !!objectOptions.notUndefined);
             if (!reducerCreatorOptions.supressWarnings && error) {
                 console.error(error);
+                console.error({state, action});
                 return state;
             }
             const rawReaction = getReactionOfActionType(name, at, objectOptions);
