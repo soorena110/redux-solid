@@ -2,7 +2,7 @@ import {addBaseOptionsToReducer} from "../_Common";
 import {ReducerCreatorOptions} from "../../ReducerCreator";
 import {DictionaryReducerOptions} from "../../Common/Models";
 import {checkValidationOfDictionaryAction, getDictionaryHelpReaction} from "./HelpAndValidation";
-import {getReactionOfActionType} from "./Reactions";
+import {getDictionaryReactionOfActionType} from "./Reactions";
 
 
 export const getDictionaryReducerActionTypeReactions = (
@@ -20,7 +20,7 @@ export const getDictionaryReducerActionTypeReactions = (
                 console.error({state, action});
                 return state;
             }
-            const rawReaction = getReactionOfActionType(name, at, dataObjectKeyName, dictionaryOptions);
+            const rawReaction = getDictionaryReactionOfActionType(name, at, dataObjectKeyName, dictionaryOptions);
             return addBaseOptionsToReducer(rawReaction, dictionaryOptions)(state, action);
         }
     });

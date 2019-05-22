@@ -26,7 +26,6 @@ export interface BaseReducerOptions {
         onReducing?: (e: ReducerEventArgs) => void;
         onReduced?: (e: ReducerEventArgs) => void;
     }
-    _notYet_shouldLog?: never;
     _notYet_expiration?: {
         timeout: number;
     }

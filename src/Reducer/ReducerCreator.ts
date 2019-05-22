@@ -3,7 +3,7 @@ import {
     addHelpReactionToReactionDictionary,
     createReducerWithInitialState,
     readLastSavedState
-} from "./ReducerFunctions/CreatingReducerFunctions";
+} from "./Functions/CreatingReducerFunctions";
 import {
     ArrayReducerOptions,
     BooleanReducerOptions,
@@ -13,11 +13,11 @@ import {
     Reaction,
     VariableReducerOptions
 } from "./Common/Models";
-import {getDictionaryReducerActionTypeReactions} from "./ReducerTypes/Dictionary";
-import {getBooleanReducerActionTypeReactions} from "./ReducerTypes/BooleanReducer";
-import {getVariableReducerActionTypeReactions} from "./ReducerTypes/ValueReducer";
-import {getObjectReducerActionTypeReactions} from "./ReducerTypes/ObjectReducer";
-import {getArrayReducerActionTypeReactions} from "./ReducerTypes/ArrayReducer";
+import {getDictionaryReducerActionTypeReactions} from "./Types/Dictionary";
+import {getBooleanReducerActionTypeReactions} from "./Types/BooleanReducer";
+import {getVariableReducerActionTypeReactions} from "./Types/ValueReducer";
+import {getObjectReducerActionTypeReactions} from "./Types/ObjectReducer";
+import {getArrayReducerActionTypeReactions} from "./Types/Array";
 
 interface ReducerOptions {
     cachingOptions?: Partial<CachingOptions>

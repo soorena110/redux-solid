@@ -11,8 +11,8 @@ import {
 import {DictionaryActionTypes, DictionaryReducerOptions} from "../../Common/Models";
 
 
-export const getReactionOfActionType = (name: string, actionTypes: DictionaryActionTypes,
-                                        dataObjectKeyName: string, dictionaryOptions: DictionaryReducerOptions) => {
+export const getDictionaryReactionOfActionType = (name: string, actionTypes: DictionaryActionTypes,
+                                                  dataObjectKeyName: string, dictionaryOptions: DictionaryReducerOptions) => {
     switch (actionTypes) {
         case 'Set':
             return (state: any, action: any) => {

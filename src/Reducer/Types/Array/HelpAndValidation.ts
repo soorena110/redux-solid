@@ -1,5 +1,5 @@
-import {ArrayActionTypes} from "../Common/Models";
-import {onlyOneExists} from "./_Common";
+import {ArrayActionTypes} from "../../Common/Models";
+import {onlyOneExists} from "../../HelpAndValidation/_Common";
 
 export const getArrayHelpReaction = (actionTypes: ArrayActionTypes[], name: string) => {
     return (state: any) => {
