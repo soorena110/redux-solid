@@ -8,7 +8,8 @@ import {
     removeKeyFromDictionaryIfExists,
     replaceKeyValuesToDictionaryIfExists
 } from "./_DictionaryOperations";
-import {DictionaryActionTypes, DictionaryReducerOptions} from "../../Common/Models";
+import {DictionaryReducerOptions} from "../../../Models/ReducerModels";
+import {DictionaryActionTypes} from "../../../Models/ActionTypes";
 
 
 export const getDictionaryReactionOfActionType = (name: string, actionTypes: DictionaryActionTypes,

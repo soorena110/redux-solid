@@ -1,4 +1,4 @@
-import {ArrayActionTypes} from "../../Common/Models";
+import {ArrayActionTypes} from "../../../Models/ActionTypes";
 
 export const getArrayReactionOfActionType = (name: string, actionType: ArrayActionTypes) => {
     switch (actionType) {

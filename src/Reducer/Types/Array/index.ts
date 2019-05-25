@@ -1,8 +1,9 @@
 import {addBaseOptionsToReducer} from "../_Common";
 import {ReducerCreatorOptions} from "../../ReducerCreator";
-import {ArrayReducerOptions} from "../../Common/Models";
-import {checkValidationOfArrayAction, getArrayHelpReaction} from "./HelpAndValidation";
+import {ArrayReducerOptions} from "../../../Models/ReducerModels";
 import {getArrayReactionOfActionType} from "./Reactions";
+import {getArrayHelpReaction} from "./Help";
+import {checkValidationOfArrayAction} from "./Validation";
 
 
 export const getArrayReducerActionTypeReactions = (

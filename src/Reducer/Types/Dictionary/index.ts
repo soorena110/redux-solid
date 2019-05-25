@@ -1,8 +1,9 @@
 import {addBaseOptionsToReducer} from "../_Common";
 import {ReducerCreatorOptions} from "../../ReducerCreator";
-import {DictionaryReducerOptions} from "../../Common/Models";
-import {checkValidationOfDictionaryAction, getDictionaryHelpReaction} from "./HelpAndValidation";
+import {DictionaryReducerOptions} from "../../../Models/ReducerModels";
+import {getDictionaryHelpReaction} from "./Help";
 import {getDictionaryReactionOfActionType} from "./Reactions";
+import {checkValidationOfDictionaryAction} from "./Validation";
 
 
 export const getDictionaryReducerActionTypeReactions = (

@@ -9,15 +9,17 @@ import {
     BooleanReducerOptions,
     CachingOptions,
     DictionaryReducerOptions,
+    FlagReducerOptions,
     ObjectReducerOptions,
     Reaction,
     VariableReducerOptions
-} from "./Common/Models";
+} from "../Models/ReducerModels";
 import {getDictionaryReducerActionTypeReactions} from "./Types/Dictionary";
-import {getBooleanReducerActionTypeReactions} from "./Types/BooleanReducer";
-import {getVariableReducerActionTypeReactions} from "./Types/ValueReducer";
-import {getObjectReducerActionTypeReactions} from "./Types/ObjectReducer";
+import {getBooleanReducerActionTypeReactions} from "./Types/Boolean";
+import {getVariableReducerActionTypeReactions} from "./Types/Variable";
+import {getObjectReducerActionTypeReactions} from "./Types/Object";
 import {getArrayReducerActionTypeReactions} from "./Types/Array";
+import {getFlagReducerActionTypeReactions} from "./Types/Flag";
 
 interface ReducerOptions {
     cachingOptions?: Partial<CachingOptions>
@@ -75,12 +77,23 @@ export default class ReducerCreator {
         return this;
     }
 
+    withFlagReducer(name: string, flagOptions?: FlagReducerOptions) {
+        const newReactions = getFlagReducerActionTypeReactions(name, this.options, flagOptions);
+        this.addReactions(newReactions);
+        this._reducerNames.push(name);
+        return this;
+    }
+
     setOptions(options: Partial<ReducerCreatorOptions>) {
         this.options = Object.assign({}, this.options, options)
     }
 
     addReaction(reactionName: string, reaction: Reaction) {
-        this._reactions[reactionName] = reaction;
+        const prevReaction = this._reactions[reactionName];
+        if (!prevReaction)
+            this._reactions[reactionName] = reaction;
+        else this._reactions[reactionName] = (state, action) => reaction(prevReaction(state, action), action);
+
         return this;
     }
 

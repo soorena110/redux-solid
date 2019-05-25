@@ -1,4 +1,4 @@
-import {BaseReducerOptions, Reaction} from "../Common/Models";
+import {BaseReducerOptions, Reaction} from "../../Models/ReducerModels";
 
 export const addBaseOptionsToReducer = (reducer: Reaction, reducerOptions: BaseReducerOptions) => {
     reducer = addEventsToReducer(reducer, reducerOptions);
@@ -35,3 +35,5 @@ const addCachingToReducer = (reducer: (state: any, action: any) => any, reducerO
     //     return newState;
     // }
 };
+
+export const onlyOneExists = (...params: any) => params.filter((p: any) => p).length == 1;

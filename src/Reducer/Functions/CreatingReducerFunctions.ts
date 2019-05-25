@@ -1,5 +1,5 @@
 import {ReducerCreatorOptions} from "../ReducerCreator";
-import {CachingOptions, Reaction, ReducerType} from "../Common/Models";
+import {CachingOptions, Reaction, ReducerType} from "../../Models/ReducerModels";
 
 export const createReducerWithInitialState = (reactions: { [actionType: string]: Reaction },
                                               initialState: any = {},
