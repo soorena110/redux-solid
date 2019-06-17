@@ -1,4 +1,4 @@
-# Redux SOLID  ;))
+# Redux SOLID
 
 If you have read SOLID in Object Orient Design (OOD), then you know than there is a rule that says `A class or a function should do single responsible.` This rule is `Single Responsibility`.
 
@@ -10,7 +10,7 @@ So redux-solid is a middle ware to change culture of redux beside preventing the
 
 The idea is to say what we want and how reducer should behavior, instead of writing more code which is always duplicated with little change.
 
-## How it works
+## How it works ;))
 
 
 See the example code below ↓
@@ -89,19 +89,8 @@ npm install redux-multi
 ```
 
 ## Usage
-
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
-```
-
+...
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
