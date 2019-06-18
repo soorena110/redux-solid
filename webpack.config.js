@@ -1,6 +1,7 @@
 "use strict";
 
 const path = require('path');
+const Webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (env) => {
@@ -21,15 +22,19 @@ module.exports = (env) => {
             ]
         },
         resolve: {
-            extensions: ['*', '.ts']
+            extensions: ['*', '.ts', '.js']
         },
         output: {
-            path: path.join(__dirname, !isDevelopementMode ? './dist' : './src/_dev/js'),
+            path: path.join(__dirname, './dist'),
             filename: 'index.js',
             library: 'ReduxSolid',
             libraryTarget: "umd"
         },
-        plugins: [new UglifyJsPlugin()]
+        devServer: {
+            contentBase: './src/_dev',
+            hot: true
+        },
+        plugins: [env.dev ? new Webpack.HotModuleReplacementPlugin() : new UglifyJsPlugin()]
     };
 
 };
