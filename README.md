@@ -40,7 +40,7 @@ const employeeReducer = (state = defaultState, action) => {
 ```
 Consider in this example for each request we should write the code. But what we suggest is :
 ```js
-const employeeReducer= new ReducerCreator()
+const employeeReducer = new ReducerCreator()
     .withDictionaryReducer('Employee', 'keyInDictionary', {
         // some configue
     }).toReducer()
@@ -118,7 +118,7 @@ reducerCreator.withArrayReducer('Employee', {
     })
 ```
 
-and now we have reducer with `Add_Employee`, `Remove_Employee`, `Replace_Employee`, `Push_Employee`,  `Pop_Employee` & etc. To access value we should use `state.myReducer.Employee`.
+and now we have reducer with action types `Add_Employee`, `Remove_Employee`, `Replace_Employee`, `Push_Employee`,  `Pop_Employee` & etc. To access value we should use `state.myReducer.Employee`. To see all action available, you can `dispatch({type:'Help'})` to see help or you can also `dispatch({type:'Help_Employee'})` to see all available action type of `Employee` and what they do.
 
 ### a. sub-reducer types
 
