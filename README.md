@@ -1,8 +1,8 @@
 # Redux SOLID
 
-If you have read SOLID in Object Orient Design (OOD), then you know than there is a rule that says `A class or a function should do single responsible.` This rule is `Single Responsibility`.
+If you have read SOLID in [Object Orient Design (OOD)](https://en.wikipedia.org/wiki/SOLID), then you know than there is a rule that says `A class or a function should do single responsible.` This rule is `Single Responsibility`.
 
-There are also some rules in `Clean Code` that say `A function or class name should be what it does. It should never say why is called or used.` But redux culture (how redux users use it) violate these rules. :((
+There are also some rules in [Clean Code](https://github.com/ryanmcdermott/clean-code-javascript) that say `A function or class name should be what it does. It should never say why is called or used.` But redux culture (how redux users use it) violate these rules. :((
 
 The result of this violation is to write repetitive codes in reducers or other parts of play (also DRY violation). Redux code duplication make programmers cry and anger (and in some cases they change their job, not to be programmer any more !!! :P)
 
@@ -90,6 +90,11 @@ npm install redux-multi
 
 ## Usage
 ...
+### ReducerCreator
+#### 1. field types
+#### 2. reducer options
+#### 3. other methods
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
