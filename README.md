@@ -71,7 +71,9 @@ const employeeReducer = (state = defaultState, action) => {
 }
 ```
 
-then we will have reduecer which need to say what they do instead of why they do (and don't violate rules.) For example consider that we want to **RequestEmployee_Start** sets a flag on to prevent multiple requests, so in new reducer we should dispatch **"Flag_Employee"** with a key. When request succeed, **RequestEmployee_Succeed** is dispatched, which dispatches both **AddOrReplace_Employee** and **Unflag_Employee**. There is still a problem! It hurts performance. To solve this problem we need to use [redux-multi](https://www.npmjs.com/package/redux-multi), which helps us to dispatch more than one actions with single component refresh due to optimization.
+then we will have reduecer which need to say what they do instead of why they do (and don't violate rules.) For example consider that we want to **RequestEmployee_Start** sets a flag on to prevent multiple requests, so in new reducer we should dispatch **"Flag_Employee"** with a key. When request succeed, **RequestEmployee_Succeed** is dispatched, which dispatches both **AddOrReplace_Employee** and **Unflag_Employee**.
+
+There is still a problem! It hurts performance. To solve this problem we need to use [redux-multi](https://www.npmjs.com/package/redux-multi), which helps us to dispatch more than one actions with single component refresh due to optimization.
 
 ```
 dispatch([action1,action2])
@@ -80,8 +82,11 @@ dispatch([action1,action2])
 ## Installation
 
 ```
+npm install redux
+
 npm install redux-solid
 ```
+
 You may also need to install [redux-multi](https://www.npmjs.com/package/redux-multi) to dispatch more than one action with single component refresh due to optimization.
 
 ```
@@ -89,13 +94,48 @@ npm install redux-multi
 ```
 
 ## Usage
-...
+`ReduxSolid` is created to solve many problems, however it only creates reducers by now.
 ### ReducerCreator
-#### 1. field types
-#### 2. reducer options
-#### 3. other methods
+This is the name of class which creates reducer, what we saw in previous example.
+
+```js
+const reducerCreator = new ReducerCreator(reducerOptions);
+
+//... add some sub reducers
+
+const rootReducer = combineReducers({
+    myReducer: reducerCreator .toReducer(initialState)
+});
+
+```
+This code creates an empty reducer and you'll need to add some sub-reducer to your store. as you know, to reference `myReducer`, we should use `state.myReducer`.
+
+We have several sub-reducer types as explained in future. Think that we want to add a arrayReducer, so we add below codes ↓
+
+```js
+reducerCreator.withArrayReducer('Employee', {
+        // some configue
+    })
+```
+
+and now we have reducer with `Add_Employee`, `Remove_Employee`, `Replace_Employee`, `Push_Employee`,  `Pop_Employee` & etc. To access value we should use `state.myReducer.Employee`.
+
+### a. sub-reducer types
+
+There are several types for sub-reducers.
+#### ArrayReducer
+#### DictionaryReducer
+#### VariableReducer
+#### ObjectReducer
+#### BooleanReducer
+#### FlagReducer
+
+#### b. reducer options
+#### c. other methods
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+### Also star my project in gitHub if you like it ;))
