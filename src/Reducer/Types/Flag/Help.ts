@@ -6,10 +6,10 @@ export const getFlagHelpReaction = (actionTypes: FlagActionTypes[], name: string
             switch (at) {
                 case 'Flag':
                     return `\x1b[33m→ ${at}_${name}\x1b[37m : ` + 'activates flag with entered key.\n' +
-                        '   • action.value must be the item(s).';
+                        '   * action.value must be the item(s).';
                 case 'Unflag':
                     return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'deactivates flag with entered key.\n' +
-                        '   • action.value must be the item(s).';
+                        '   * action.value must be the item(s).';
             }
         });
 

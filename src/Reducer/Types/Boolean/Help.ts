@@ -7,7 +7,7 @@ export const getBooleanHelpReaction = (actionTypes: BooleanActionTypes[], name: 
             switch (at) {
                 case 'Set':
                     return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'set data without looking to previous data.\n' +
-                        '   • action.value must be a boolean (True or False)' +
+                        '   * action.value must be a boolean (True or False)' +
                         (booleanOptions.notUndefined ? '' : ' or undefined') + '.';
                 case 'True':
                     return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'sets the related data to `True`.';

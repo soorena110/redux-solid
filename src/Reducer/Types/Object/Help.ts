@@ -7,7 +7,7 @@ export const getObjectHelpReaction = (actionTypes: ObjectActionTypes[], name: st
             switch (at) {
                 case 'Set':
                     return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'sets the related data to `action.value`.\n' +
-                        (objectOptions.notUndefined ? '   • action.value can not be undefined.' : '');
+                        (objectOptions.notUndefined ? '   * action.value can not be undefined.' : '');
                 case 'Merge':
                     return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'merges the related data with `action.value`.';
                 case 'Clear':

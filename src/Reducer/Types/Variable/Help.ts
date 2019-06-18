@@ -7,7 +7,7 @@ export const getVariableHelpReaction = (actionTypes: VariableActionTypes[], name
             switch (at) {
                 case 'Set':
                     return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'sets the related data to `action.value`.\n' +
-                        (variableOptions.notUndefined ? '   • action.value can not be undefined.' : '');
+                        (variableOptions.notUndefined ? '   * action.value can not be undefined.' : '');
                 case 'Clear':
                     return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'sets the related data to `undefined`.';
                 default:

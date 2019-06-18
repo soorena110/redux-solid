@@ -7,12 +7,12 @@ export const checkValidationOfDictionaryAction = (action: any, dataObjectKeyName
             return 'You can only use one of below properties for action.type `' + action.type + '` :\n' +
                 '   → action.key as string or number & action.value as any.\n' +
                 '   → action.keyValue that can be of type one of below types :\n' +
-                '   • { key: string | number, value: any } (key of type string or number)\n' +
-                '   • { key: string | number, value: any }[] (key of type string or number)\n' +
-                '   • { [key: string | number]: any } (a dictionary with key of type string or number)' +
+                '   * { key: string | number, value: any } (key of type string or number)\n' +
+                '   * { key: string | number, value: any }[] (key of type string or number)\n' +
+                '   * { [key: string | number]: any } (a dictionary with key of type string or number)' +
                 '   → action.data that is the data(s) which is going to be stored :\n' +
-                '   • this can be as array of data.\n' +
-                '   • it should have key property that is "id" by default.';
+                '   * this can be as array of data.\n' +
+                '   * it should have key property that is "id" by default.';
 
         if (action.key != undefined) {
             if (typeof action.key != 'string' && typeof action.key != 'number')
@@ -39,14 +39,14 @@ export const checkValidationOfDictionaryAction = (action: any, dataObjectKeyName
                 if (action.data.find((d: any) => !d[dataObjectKeyName]))
                     return 'For `redux_dictionary` type, action.data can be array of data,' +
                         '\but each array item must have property with name <dataObjectKeyName>.\n' +
-                        '• <dataObjectKeyName> is defined when creating the reducer.' +
-                        '• <dataObjectKeyName> value is `id` by default'
+                        '* <dataObjectKeyName> is defined when creating the reducer.' +
+                        '* <dataObjectKeyName> value is `id` by default'
             }
             else if (!action.data[dataObjectKeyName])
                 return 'For `redux_dictionary` type, action.data can be object,' +
                     'but must property with name <dataObjectKeyName>.\n' +
-                    '• <dataObjectKeyName> is defined when creating the reducer.' +
-                    '• <dataObjectKeyName> value is `id` by default'
+                    '* <dataObjectKeyName> is defined when creating the reducer.' +
+                    '* <dataObjectKeyName> value is `id` by default'
         }
     }
     else if (action.type.startsWith('Remove')) {
