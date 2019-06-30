@@ -154,10 +154,11 @@ Remove the last item from the related redux array. Is good when using array as Q
 * `Clear_Employee` :
 Clears the related redux array ([] is the result !).
 
+
+
 #### DictionaryReducer
 
-
-
+// todo why Dictionary Reduce ??!
 
 
 
@@ -203,8 +204,10 @@ Removes an item or items of related redux array.
 * `Clear_Employee` :
 Set the related redux array to empty array.
 
-#### VariableReducer
 
+
+#### VariableReducer
+A variable reducer, assumes an variable field and defines only `Set` or maybe `Clear` operation. It is a simple reducer.
 
 ```js
 reducerCreator.withVariableReducer('Employee', {
@@ -212,15 +215,64 @@ reducerCreator.withVariableReducer('Employee', {
     })
 ```
 
+This code creates a reducer with below action types :
+
 * `Set_Employee` :
 Sets the related data to `action.value`.
 if in variable reducer option `notUndefined` is true, then `action.value` can not be undefined, otherwise you get error.
 * `Clear_Employee` : Sets the related data to `undefined`.
 This does not exist if in variable reducer option `notUndefined` is true.
 
+
+
 #### ObjectReducer
+
+An object reducer, is as same as a variable reducer, with only one more action type. This Action type is to merge.
+
+```js
+reducerCreator.withObjectReducer('Employee', {
+        // some object reducer configue
+    })
+```
+
+This code creates a reducer with below action types :
+
+* `Set_Employee` :
+Sets the related data to `action.value`.
+if in variable reducer option `notUndefined` is true, then `action.value` can not be undefined, otherwise you get error.
+* `Clear_Employee` : Sets the related data to `undefined`.
+This does not exist if in variable reducer option `notUndefined` is true.
+* `Merge_Employee` : Merges the related data with `action.value`.
+
+
+
+
 #### BooleanReducer
+
+A boolean reducer, assumes a boolean field. You can set it to a value, true, false, toggle, undefined.
+
+```js
+reducerCreator.withBooleanReducer('Employee', {
+        // some boolean reducer configue
+    })
+```
+
+
+* `Set_Employee` :
+Set value without looking to previous data.
+`action.value` must be a boolean (True or False) or undefined if if in variable reducer option `notUndefined` is true, otherwise you get error.
+* `Clear_Employee` : Sets the related redux value to `undefined`.
+This does not exist if in variable reducer option `notUndefined` is true.
+* `Toggle_Employee` : Toggle the related redux boolean value.
+* `True_Employee` : Sets the related value to `True`.
+* `False_Employee` : Sets the related value to `False`.
+
+
+
+
+
 #### FlagReducer
+// todo
 
 #### b. reducer options
 #### c. other methods
