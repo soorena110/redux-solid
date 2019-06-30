@@ -122,10 +122,102 @@ and now we have reducer with action types `Add_Employee`, `Remove_Employee`, `Re
 
 ### a. sub-reducer types
 
-There are several types for sub-reducers.
+There are several types for sub-reducers. Assume that our store needs CRUD operations (Create, Read, Update, Delete) and now we are defining them in reducer. In redux we have array, dictionary (object with specified keys and their values), primitive variables, so our reducers must support these types.
+
 #### ArrayReducer
+An array reducer, assumes an array field and defines CRUD operation regarding array operation in JavaScript.
+
+```js
+reducerCreator.withArrayReducer('Employee', {
+        // some array reducer configue
+    })
+```
+This code creates a reducer with below action types :
+* `Set_Employee` :
+Sets `action.value` instead of the related array. `action.value` must be the item(s).
+* `Push_Employee` :
+Pushes an item or items into the end of related redux array. action.value must be the item(s).
+* `Push/Ignore_Employee` :
+Pushes an item or items into the end of related redux array, however checks all of the array items not to be duplicated. `action.value` must be the item(s).
+* `ReversePush_Employee` :
+Pushes an item or items into the beginning of related redux array. `action.value` must be the item(s).
+* `ReversePush/Ignore_Employee` :
+Pushes an item or items into the beginning of related redux array, however checks all of the array items not to be duplicated. action.value must be the item(s).
+* `Add_Employee` :
+is as same as `Push_Employee`.
+* `Remove_Employee` :
+removes an item or items from the related redux array. Either action.index or `action.value` must be filled. `action.index` is the index(es) of item(s) to be removed. `action.value` is the item(s) to be removed
+* `RemoveLast_Employee` :
+Remove the last item from the related redux array. is good when using array as stack, because is similar to `Pop` method in stack.
+* `RemoveFirst_Employee` :
+Remove the last item from the related redux array. Is good when using array as Queue, because is similar to `Dequeue` method in Queue.
+* `Clear_Employee` :
+Clears the related redux array ([] is the result !).
+
 #### DictionaryReducer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```js
+reducerCreator.withDictionaryReducer('Employee', {
+        // some dictionary reducer configue
+    })
+```
+
+This code creates a reducer with below action types :
+* `Set_Employee` :
+Creates new dictionary and pushes key-value-data(s) into it.
+`key-value-data` is described at the end.
+* `Add/Replace_Employee` :
+Adds an `key-value-data` to the related redux dictionary, however, if any item has duplicated key, replaces it.
+`key-value-data` is described at the end.'
+* `Add_Employee` :
+It is as same as `Add/Replace_Employee`.
+* `Add/Ignore` :
+Adds an `key-value-data` to the related redux dictionary.
+however, if any item has duplicated key, ignore it (does nothing for that item).
+`key-value-data` is described at the end.
+* `Add/Merge_Employee` :
+Adds an `key-value-data` to the related redux dictionary.
+however, if any item has duplicated key, merge it with same-key-data.
+`key-value-data` is described at the end.
+* `Replace_Employee` :
+Replaces an `key-value-data` to the same-key-data(s) the related redux dictionary.
+* `Merge_Employee` :
+Merges an `key-value-data` to the same-key-data(s) the related redux dictionary.
+* `Remove_Employee` :
+Removes an item or items of related redux array.
+`action.key` must be filled and is the key(s) of item(s) to be removed.
+`action.key` can number or string or array of number or array of string.
+* `Clear_Employee` :
+Set the related redux array to empty array.
+
 #### VariableReducer
+
+
+```js
+reducerCreator.withVariableReducer('Employee', {
+        // some variable reducer configue
+    })
+```
+
+* `Set_Employee` :
+Sets the related data to `action.value`.
+if in variable reducer option `notUndefined` is true, then `action.value` can not be undefined, otherwise you get error.
+* `Clear_Employee` : Sets the related data to `undefined`.
+This does not exist if in variable reducer option `notUndefined` is true.
+
 #### ObjectReducer
 #### BooleanReducer
 #### FlagReducer
