@@ -6,17 +6,17 @@ export const getBooleanHelpReaction = (actionTypes: BooleanActionTypes[], name: 
         const availableActions = actionTypes.map(at => {
             switch (at) {
                 case 'Set':
-                    return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'set data without looking to previous data.\n' +
-                        '   * action.value must be a boolean (True or False)' +
+                    return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'Set value without looking to previous data.\n' +
+                        '   * `action.value` must be a boolean (True or False)' +
                         (booleanOptions.notUndefined ? '' : ' or undefined') + '.';
                 case 'True':
-                    return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'sets the related data to `True`.';
+                    return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'Sets the related value to `True`.';
                 case 'False':
-                    return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'sets the related data to `False`.';
+                    return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'Sets the related value to `False`.';
                 case 'Toggle':
-                    return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'toggle the related redux data.';
+                    return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'Toggle the related redux boolean value.';
                 case 'Clear':
-                    return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'sets the related redux data to `undefined`.';
+                    return `\x1b[33m→ ${at}_${name} \x1b[37m ` + 'Sets the related redux value to `undefined`.';
                 default:
                     const exhaustiveCheck: never = at;
             }
