@@ -158,17 +158,23 @@ Clears the related redux array ([] is the result !).
 
 #### DictionaryReducer
 
-// todo why Dictionary Reduce ??!
+In optimization Dictionary has a great advantage rather than array. Assume that we have a big list (for example with 1000 items) that rarely items are added or removed, but list items are changing quickly, in this case is better to use a dictionary and the list is rendering items by keys and these keys don't change and items in this list is redux-connected components that are bound to their related data from that dictionary.
 
+For example we have a dictionary like below :
 
+```js
 
+employee = {
+	'first' : {id:'first', name:'mohammadreza', family:'azarang', salary:200000},
+	'second' : {id:'second', name:'mohammad', family:'dehghan', salary:200000},
+	'third' : {id:'third', name:'masoud', family:'ghadiri', salary:200000}
+}
 
+```
 
+To have an optimized user interface, we must have a list that refreshes by whole dictionary object change. so `mapStateToProps` function in `react-redux` for list component will return the dictionary. This component will render item components that get `id` from `ownProps` (refer to react-redux docs). Now each item component is connected to `employee[ownProps.id]`, so with changing any employee, only the item would rerender and the other component won't.
 
-
-
-
-
+Now in dictionary reducer we just write below code :
 
 ```js
 reducerCreator.withDictionaryReducer('Employee', {
@@ -204,7 +210,19 @@ Removes an item or items of related redux array.
 * `Clear_Employee` :
 Set the related redux array to empty array.
 
+In these action types, `key-value-data` can be passed in three ways:
 
+* both of `action.key` and `action.value`, `action.key` can be either string or number
+
+* `action.keyValue` one of three below ways :
+    * { key, value} as a `key-value` object
+    * { key, value}[] as array of `key-value` objects
+    * { [key]: data } as a dictionary (each property of this object is a `key-value`).
+for all of theme `action.key` can be either string or number.
+* `action.data` data must have a <dataObjectKeyName> of the object (according to `.withDictionaryReducer` second argument).
+    * data can also be an array of described object.
+
+// todo reducer options
 
 #### VariableReducer
 A variable reducer, assumes an variable field and defines only `Set` or maybe `Clear` operation. It is a simple reducer.
