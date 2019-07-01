@@ -39,12 +39,12 @@ export const getDictionaryHelpReaction = (actionTypes: DictionaryActionTypes[], 
 
         console.log('%cAvailable action types for %c' + name + '%c are :%c\n' + availableActions.join('\n') +
             '\n%cYou can pass `key-value-data` in three ways :\n' +
-            '1. both of `action.key` and action.value\n' +
+            '1. both of `action.key` and `action.value`\n' +
             '* key can be either string or number\n' +
             '2. `action.keyValue` as \n' +
-            '* { key, value} as a key value object\n' +
-            '* { key, value}[] as array of key value objects\n' +
-            '* { [key]: data } as a dictionary (each property of this object is a key-value).\n' +
+            '* { key, value} as a `key-value` object\n' +
+            '* { key, value}[] as array of `key-value` objects\n' +
+            '* { [key]: data } as a dictionary (each property of this object is a `key-value`).\n' +
             '        key can be either string or number\n' +
             '3. `action.data`' +
             '* data must have a `' + dataObjectKeyName + '` property (according to <dataObjectKeyName> param) of the object\n' +
