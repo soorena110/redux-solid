@@ -9,6 +9,7 @@ export const checkValidationOfDictionaryAction = (action: any, dataObjectKeyName
                 '   → action.keyValue that can be of type one of below types :\n' +
                 '   * { key: string | number, value: any } (key of type string or number)\n' +
                 '   * { key: string | number, value: any }[] (key of type string or number)\n' +
+                '   → action.dictionary that can be of type one of below types :\n' +
                 '   * { [key: string | number]: any } (a dictionary with key of type string or number)' +
                 '   → action.data that is the data(s) which is going to be stored :\n' +
                 '   * this can be as array of data.\n' +
@@ -47,6 +48,10 @@ export const checkValidationOfDictionaryAction = (action: any, dataObjectKeyName
                     'but must property with name <dataObjectKeyName>.\n' +
                     '* <dataObjectKeyName> is defined when creating the reducer.' +
                     '* <dataObjectKeyName> value is `id` by default'
+        }
+        else if (action.dictionary) {
+            if (typeof action.dictionary != 'object')
+                return 'For `redux_dictionary` type, action.dictionary must be an object. (each property is key-value-pair in dictionary';
         }
     }
     else if (action.type.startsWith('Remove')) {

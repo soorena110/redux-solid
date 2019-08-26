@@ -1,6 +1,6 @@
 {
   "name": "redux-solid",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "description": "A redux middleware and a SOLID (in object orient design) way to use redux. ;)",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",

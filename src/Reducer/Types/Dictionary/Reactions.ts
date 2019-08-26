@@ -92,25 +92,20 @@ export const getDictionaryReactionOfActionType = (name: string, actionTypes: Dic
 
 
 const getKeyValuesFromAction = (action: any, dataObjectKeyName: string): { key: string, value: any }[] => {
-    if (action.key) // for DictionaryActionType1 & DictionaryActionType4
+    if (action.key) // for DictionaryActionType1 & DictionaryActionType5
     {
         if (Array.isArray(action.key)) // if action.key is typeof string[]
             return action.key.map((k: string) => ({key: k, value: k}));
         return [{key: action.key, value: action.value}]; // if action.key is typeof string
     }
     else if (action.keyValue) { // for DictionaryActionType2
-        if (Array.isArray(action.keyValue)) { // if action.keyValue is typeof { key: string, value: string }[]
+        if (Array.isArray(action.keyValue))  // if action.keyValue is typeof { key: string, value: string }[]
             return action.keyValue.map((kv: any) => {
                 if (kv.key && kv.value)
                     return {key: kv.key, value: kv.value};
-            })
-        }
-        else if (action.keyValue.key && action.keyValue.value) {  // if action.keyValue is typeof { key: string, value: string }
+            });
+        else if (action.keyValue.key && action.keyValue.value)  // if action.keyValue is typeof { key: string, value: string }
             return [action.keyValue];
-        }
-        else { // if action.keyValue is typeof { [key: string]: any }
-            Object.getOwnPropertyNames(action.keyValue).map(key => ({key, value: action.keyValue[key]}))
-        }
     }
     else if (action.data) {// for DictionaryActionType3
         if (Array.isArray(action.data)) // if action.data is typeof object[]
@@ -118,5 +113,8 @@ const getKeyValuesFromAction = (action: any, dataObjectKeyName: string): { key: 
         else  // if action.data is typeof object
             return [{key: action.data[dataObjectKeyName], value: action.data}];
     }
-    return [] // for DictionaryActionType5
+    else if (action.dictionary)  // for DictionaryActionType4
+        Object.getOwnPropertyNames(action.dictionary).map(key => ({key, value: action.dictionary[key]}));
+
+    return [] // for DictionaryActionType6
 };

@@ -2,7 +2,7 @@ import {FlagActionTypes} from "../../../Models/ActionTypes";
 import {recreateDictionary} from "../Dictionary/_DictionaryOperations";
 
 export const getFlagReactionOfActionType = (name: string, actionType: FlagActionTypes) => {
-    name += '_flag'
+    name += '_flag';
     switch (actionType) {
         case 'Flag':
             return (state: any, action: any) => {
