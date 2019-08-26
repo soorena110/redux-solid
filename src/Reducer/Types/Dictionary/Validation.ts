@@ -3,7 +3,7 @@ import {onlyOneExists} from "../_Common";
 export const checkValidationOfDictionaryAction = (action: any, dataObjectKeyName: string) => {
     if (['Set', 'Add', 'Add/Ignore', 'Add/Replace', 'Add/Merge', 'Replace', 'Merge']
         .find(command => action.type.startsWith(command))) {
-        if (!onlyOneExists(action.key != undefined && action.value != undefined, action.keyValue, action.data != undefined))
+        if (!onlyOneExists(action.key != undefined && action.value != undefined, action.keyValue, action.data != undefined, action.dictionary != undefined))
             return 'You can only use one of below properties for action.type `' + action.type + '` :\n' +
                 '   → action.key as string or number & action.value as any.\n' +
                 '   → action.keyValue that can be of type one of below types :\n' +
