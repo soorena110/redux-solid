@@ -44,8 +44,8 @@ export const getDictionaryHelpReaction = (actionTypes: DictionaryActionTypes[], 
             '2. `action.keyValue` as \n' +
             '* { key, value} as a `key-value` object\n' +
             '* { key, value}[] as array of `key-value` objects\n' +
-            '* { [key]: data } as a dictionary (each property of this object is a `key-value`).\n' +
-            '        key can be either string or number\n' +
+            '→ action.dictionary that can be of type one of below types :\n' +
+            '* { [key: string | number]: any } (a dictionary with key of type string or number)' +
             '3. `action.data`' +
             '* data must have a `' + dataObjectKeyName + '` property (according to <dataObjectKeyName> param) of the object\n' +
             '* array of described object.',

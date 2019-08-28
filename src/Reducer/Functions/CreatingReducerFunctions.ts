@@ -55,7 +55,7 @@ export const saveLastSavedState = (cachingOptions: CachingOptions, savingState: 
 
 
 const getStandardActionType = (action: any, supressWarnings: boolean) => {
-    let actionType = action.type;
+    let actionType = action.type as any;
     if (action.command && action.entity)
         actionType = action.command + '_' + action.entity;
 
@@ -69,6 +69,7 @@ const getStandardActionType = (action: any, supressWarnings: boolean) => {
     if (actionType.split('_')[0].indexOf('Or') != -1)
         actionType = actionType.replace('Or', '/');
 
+    actionType = actionType[0].toUpperCase() + actionType.substr(1);
     return actionType;
 };
 

@@ -68,8 +68,6 @@ export const getArrayReactionOfActionType = (name: string, actionType: ArrayActi
 
         case 'Clear':
             return (state: any) => {
-                const lastState = state[name] as any[];
-                if (lastState && lastState.length)
                     return {...state, [name]: []};
                 return state;
             };

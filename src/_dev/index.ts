@@ -4,7 +4,7 @@ import {combineReducers, createStore} from "redux";
 
 const a = new ReducerCreator()
     .withBooleanReducer('bool', {notUndefined: true, preventUnchangedDispatch: false})
-    .withDictionaryReducer('logic', 'id', {isArrayDictionary: true, events: {onReducing: e => console.log(e)}})
+    .withDictionaryReducer('logic', 'id', {isArrayDictionary: true})
     .withObjectReducer('obj')
     .withFlagReducer('obj')
     .withVariableReducer('str')

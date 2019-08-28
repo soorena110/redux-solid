@@ -114,7 +114,7 @@ const getKeyValuesFromAction = (action: any, dataObjectKeyName: string): { key: 
             return [{key: action.data[dataObjectKeyName], value: action.data}];
     }
     else if (action.dictionary)  // for DictionaryActionType4
-        Object.getOwnPropertyNames(action.dictionary).map(key => ({key, value: action.dictionary[key]}));
+        return Object.getOwnPropertyNames(action.dictionary).map(key => ({key, value: action.dictionary[key]}));
 
     return [] // for DictionaryActionType6
 };
