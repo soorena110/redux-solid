@@ -6,7 +6,7 @@ export const checkValidationOfArrayAction = (action: any) => {
         if (action.value == undefined)
             return 'For `redux_array` type, action.value can not be `undefined`, it can be an array or an item';
     }
-    else if ('Remove') {
+    else if (action.type.startsWith('Remove')) {
         if (!onlyOneExists(action.value != undefined, action.index != undefined))
             return 'You can only use one of below properties for action.type `' + action.type + '` :\n' +
                 '   → action.value equal to an item to remove or an array of items to remove.\n' +
@@ -21,5 +21,9 @@ export const checkValidationOfArrayAction = (action: any) => {
                     '   → number (an index)\n' +
                     '   → number[] (array of index)';
         }
+    }
+    else if (['RemoveLast', 'RemoveFirst', 'Clear']
+        .find(command => action.type.startsWith(command))) {
+        // do nothing yet
     }
 };

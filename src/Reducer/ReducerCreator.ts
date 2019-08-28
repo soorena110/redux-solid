@@ -99,7 +99,11 @@ export default class ReducerCreator {
 
     addReactions(reactions: { [reactionName: string]: Reaction }) {
         Object.getOwnPropertyNames(reactions)
-            .forEach(key => this.addReaction(key, reactions[key]));
+            .forEach(key => {
+                const keyParts = key.split('_');
+                keyParts[0] = keyParts[0].toLowerCase();
+                this.addReaction(keyParts.join('_'), reactions[key]);
+            });
 
         return this;
     }

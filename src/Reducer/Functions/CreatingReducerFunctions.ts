@@ -69,8 +69,9 @@ const getStandardActionType = (action: any, supressWarnings: boolean) => {
     if (actionType.split('_')[0].indexOf('Or') != -1)
         actionType = actionType.replace('Or', '/');
 
-    actionType = actionType[0].toUpperCase() + actionType.substr(1);
-    return actionType;
+    const actionTypeParts = actionType.split('_');
+    actionTypeParts[0] = actionTypeParts[0].toLowerCase();
+    return actionTypeParts.join('_');
 };
 
 
@@ -83,5 +84,4 @@ export const addHelpReactionToReactionDictionary = (reactions: { [actionType: st
         helpReaction.forEach(help => console.log(help));
         return state;
     };
-    reactions['help'] = reactions['Help'];
 };

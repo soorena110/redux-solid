@@ -82,7 +82,8 @@ export const getDictionaryReactionOfActionType = (name: string, actionTypes: Dic
             };
         case 'Clear':
             return (state: any) => {
-                return {...state, [name]: createEmptyDictionary(dictionaryOptions.isArrayDictionary)}
+                if (Object.keys(state[name]).length)
+                    return {...state, [name]: createEmptyDictionary(dictionaryOptions.isArrayDictionary)}
             };
         default:
             const exhaustiveCheck: never = actionTypes;
