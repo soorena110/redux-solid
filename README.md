@@ -292,8 +292,15 @@ This does not exist if in variable reducer option `notUndefined` is true.
 #### FlagReducer
 // todo
 
-#### b. reducer options
-#### c. other methods
+### b. Reducer options
+### c. Other methods
+### d. Common action types
+There is a `reset` action type that is used to reset actions to initial state. ReducerCreator stores clone of the initial state to prevent reference type changes and reset to the beginning state whenever you need it. 
+```js
+store.dispatch('reset'); // reset to initial state.
+```
+
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

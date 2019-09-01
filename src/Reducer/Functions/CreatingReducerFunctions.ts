@@ -7,8 +7,6 @@ export const createReducerWithInitialState = (reactions: { [actionType: string]:
 
     return (state: any = initialState, action: any) => {
         const reactionKey = getStandardActionType(action, reducerCreatorOptions.supressWarnings);
-        if (!action.type && reactionKey)
-            action.type = reactionKey;
 
         const relatedReducer = reactions[reactionKey];
         return relatedReducer ? relatedReducer(state, action) : state
@@ -77,11 +75,30 @@ const getStandardActionType = (action: any, supressWarnings: boolean) => {
 
 export const addHelpReactionToReactionDictionary = (reactions: { [actionType: string]: Reaction }) => {
     const helpReaction = Object.getOwnPropertyNames(reactions)
-        .filter(key => key.startsWith('Help'));
+        .filter(key => key.startsWith('help'));
 
-    reactions['Help'] = (state) => {
+    reactions['help'] = (state) => {
         console.log('%cHelp action types are :', 'color:deepskyblue');
         helpReaction.forEach(help => console.log(help));
         return state;
     };
+};
+
+export const addResetToReactions = (reactions: { [actionType: string]: Reaction }, initialState: any) => {
+    initialState = clone(initialState);
+    reactions['reset'] = (state) => {
+        return initialState;
+    };
+};
+
+const clone = (theObject: any) => {
+    if (!theObject)
+        return theObject;
+
+    let output = (Array.isArray(theObject) ? [] : {}) as any;
+    Object.getOwnPropertyNames(theObject).forEach(key => {
+        const v = theObject[key];
+        output[key] = (typeof v === "object") ? clone(v) : v;
+    });
+    return output;
 };

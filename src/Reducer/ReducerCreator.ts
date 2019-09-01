@@ -1,6 +1,7 @@
 import {
     addCachingToReducer,
     addHelpReactionToReactionDictionary,
+    addResetToReactions,
     createReducerWithInitialState,
     readLastSavedState
 } from "./Functions/CreatingReducerFunctions";
@@ -22,7 +23,7 @@ import {getArrayReducerActionTypeReactions} from "./Types/Array";
 import {getFlagReducerActionTypeReactions} from "./Types/Flag";
 
 interface ReducerOptions {
-    cachingOptions?: Partial<CachingOptions>
+    cachingOptions?: Partial<CachingOptions>;
 }
 
 export interface ReducerCreatorOptions {
@@ -111,11 +112,12 @@ export default class ReducerCreator {
     toReducer<StateModel>(initialState: StateModel, options?: ReducerOptions) {
         let cachingOptions: CachingOptions = {
             cacheName: options && options.cachingOptions && options.cachingOptions.cacheName ||
-            `ReduxState_${this._reducerNames.join('_&_')}`,
+                `ReduxState_${this._reducerNames.join('_&_')}`,
             cacheMethod: options && options.cachingOptions && options.cachingOptions.cacheMethod || 'none'
         };
 
         addHelpReactionToReactionDictionary(this._reactions);
+        addResetToReactions(this._reactions, initialState);
         const lastSaveState = readLastSavedState(cachingOptions);
         let reducer = createReducerWithInitialState(this._reactions, lastSaveState ?
             lastSaveState : initialState,

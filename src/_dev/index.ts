@@ -11,7 +11,7 @@ const a = new ReducerCreator()
     .withArrayReducer('arr');
 
 const rootReducer = combineReducers({
-    a: a.toReducer({}, {})
+    a: a.toReducer({arr: [1, 2, 3]}, {})
 });
 
 
