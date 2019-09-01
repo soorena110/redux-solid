@@ -49,6 +49,6 @@ const monitorReducerEnhancer = (createStore: any) => (
     };
 
     return createStore(monitoredReducer, initialState, enhancer)
-}
+};
 
 export default monitorReducerEnhancer

@@ -302,6 +302,18 @@ store.dispatch('reset'); // reset to initial state.
 ```
 
 
+You can also set whole state of reduce using `'setState'` action type.
+It means you dispatch action like below and then state will set to action.state.
+This action is suitable for testing when you want to run automated test or you want to set customer problem state into your local to see whats the problem.
+```js
+reducer = addSetStateToReducer(reducer); // this code should run before your store creation.
+const store = createStore(reducer);
+
+...
+
+store.dispatch({type:'setState', state: myCustomState})
+```
+
 
 No difference there is between lower case or upper case action.type prefixes.
 For example if action.type is ```'reset'```, ```'Reset'``` or ```'RESET'``` it works well.

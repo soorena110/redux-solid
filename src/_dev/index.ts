@@ -1,5 +1,5 @@
-import {ReducerCreator} from "../";
-import monitorReducerEnhancer from "../Reducer/ReduxLogger";
+import {addSetStateToReducer, ReducerCreator} from "../";
+import monitorReducerEnhancer from "../ReducerCreator/ReduxLogger";
 import {combineReducers, createStore} from "redux";
 
 const a = new ReducerCreator()
@@ -15,7 +15,8 @@ const rootReducer = combineReducers({
 });
 
 
-const store = createStore(rootReducer, undefined, monitorReducerEnhancer as any);
+const reducer = addSetStateToReducer(rootReducer);
+const store = createStore(reducer, undefined, monitorReducerEnhancer as any);
 
 (window as any).$store = store;
 export default store;
