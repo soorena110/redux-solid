@@ -6,14 +6,18 @@ import {
     VariableActionTypes
 } from "./ActionTypes";
 
-export interface ArrayReducerOptions extends BaseReducerOptions {
-    actionTypes?: ArrayActionTypes[];
-}
-
 
 export interface ReducerEventArgs {
     action: any;
     state: any;
+}
+
+interface Duration {
+    milliseconds?: number;
+    seconds?: number;
+    minutes?: number;
+    hours?: number;
+    days?: number;
 }
 
 export interface BaseReducerOptions {
@@ -21,9 +25,10 @@ export interface BaseReducerOptions {
         onReducing?: (e: ReducerEventArgs) => void;
         onReduced?: (e: ReducerEventArgs) => void;
     }
-    _notYet_expiration?: {
-        timeout: number;
-    }
+    _notYet_expiration?: Duration
+    _notYet_compareOptimization?: 'deep' | 'shallow' | 'json';
+
+    cachingOptions?: CachingOptions;
 }
 
 export interface BooleanReducerOptions extends BaseReducerOptions {
@@ -38,6 +43,12 @@ export interface DictionaryReducerOptions extends BaseReducerOptions {
     recreateDictionaryOnObjectChange?: boolean;
     isArrayDictionary?: boolean;
 }
+
+
+export interface ArrayReducerOptions extends BaseReducerOptions {
+    actionTypes?: ArrayActionTypes[];
+}
+
 
 export interface ObjectReducerOptions extends BaseReducerOptions {
     actionTypes?: ObjectActionTypes[];
@@ -61,6 +72,6 @@ export type ReducerType = (state: any, action: any) => any;
 
 export interface CachingOptions {
     cacheMethod: CacheMethodTypes;
-    cacheName: string;
+    cacheName?: string;
     _notYet_cacheExpireDate?: never;
 }

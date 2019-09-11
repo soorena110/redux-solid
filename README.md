@@ -293,8 +293,47 @@ This does not exist if in variable reducer option `notUndefined` is true.
 // todo
 
 ### b. Reducer options
+You can pass options to reducers. Look at below example :
+```js
+reducerCreator.withDictionaryReducer('Employee', {
+    cachingOptions: {cacheMethod: 'localStorage'}, // cache data in ...
+                        // local storage to be set when page is refreshed
+    isArrayDictionary: true // set dictionary type to [] instead of {}
+});
+```
+
+#### Common Options
+There are some options common in any reducer.
+
+One of these options is `cachingOptions`.
+It is used to save every state in related store.
+Currently, we just support this feature for `localStorage`, but soon we support `asyncStroage`, `sessionStorage` and `cookies` as well.
+`cachingOptions` takes an object that this object consists `cacheMethod` which is a string showing storage type as said previously.
+The other param is `cacheName` that is not necessary and its default value is name of the reducer.
+This param determines name of saving key in storage (for example `ReduxState_myCacheName`).
+You can pass `cachingOptions` in `toReducer` option when you want to save all of state group in storage. ex. :
+```js
+const r = new ReducerCreator()
+    .withVariableReducer('var1')
+    .withDictionaryReducer('dict1')
+    .toReducer({}, {cachingOptions: {cacheMethod: "localStorage"}});
+```
+
+
+
+Another option is `events` that consist two params `onReducing` that takes 
+an event and raised when data is going to be dispatch into reducer,
+and the other one is `onReduced` when dispatch is completed.
+ 
+
+#### `toReducer` Options
+
+//todo options for other reducer types should be documented ;) 
+
 ### c. Other methods
+// todo
 ### d. Common action types
+
 There is a `reset` action type that is used to reset actions to initial state.
 ReducerCreator stores clone of the initial state to prevent reference type changes and reset to the beginning state whenever you need it. 
 ```js
