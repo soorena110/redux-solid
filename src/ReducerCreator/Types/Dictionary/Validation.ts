@@ -20,7 +20,8 @@ export const checkValidationOfDictionaryAction = (action: any, dataObjectKeyName
                 return 'For `redux_dictionary` type, action.key must be string or number.';
             if (action.value == undefined)
                 return 'For `redux_dictionary` type, action.key must be beside of action.value.';
-        } else if (action.keyValue) {
+        }
+        else if (action.keyValue) {
             if (typeof action.keyValue.key != 'string' && typeof action.keyValue.key != 'number')
                 return 'For `redux_dictionary` type, action.keyValue.key must be string or number.';
             if (action.keyValue.value == undefined)
@@ -33,23 +34,27 @@ export const checkValidationOfDictionaryAction = (action: any, dataObjectKeyName
                     return 'For `redux_dictionary` type, action.keyValue as array must be of ' +
                         'type array of {key:string | number, value:any}. (key of type string or number)';
             }
-        } else if (action.data) {
+        }
+        else if (action.data) {
             if (Array.isArray(action.data)) {
                 if (action.data.find((d: any) => d[dataObjectKeyName] == undefined))
                     return 'For `redux_dictionary` type, action.data can be array of data,' +
                         '\but each array item must have property with name <dataObjectKeyName>.\n' +
                         '* <dataObjectKeyName> is defined when creating the reducer.' +
                         '* <dataObjectKeyName> value is `id` by default'
-            } else if (!action.data[dataObjectKeyName])
+            }
+            else if (!action.data[dataObjectKeyName])
                 return 'For `redux_dictionary` type, action.data can be object,' +
                     'but must property with name <dataObjectKeyName>.\n' +
                     '* <dataObjectKeyName> is defined when creating the reducer.' +
                     '* <dataObjectKeyName> value is `id` by default'
-        } else if (action.dictionary) {
+        }
+        else if (action.dictionary) {
             if (typeof action.dictionary != 'object')
                 return 'For `redux_dictionary` type, action.dictionary must be an object. (each property is key-value-pair in dictionary';
         }
-    } else if (action.type.startsWith('Remove')) {
+    }
+    else if (action.type.startsWith('Remove')) {
         if (action.key == undefined)
             return 'For `redux_dictionary` to remove an item, actions should have key';
 

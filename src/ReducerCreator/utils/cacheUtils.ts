@@ -26,14 +26,27 @@ export const saveLastSavedState = (cachingOptions: CachingOptions, savingState: 
 };
 
 
-export const addCachingToReducer = (reducer: ReducerType, cachingOptions: CachingOptions) => {
+export const addCachingToAllReducer = (reducer: ReducerType, cachingOptions: CachingOptions) => {
     if (cachingOptions.cacheMethod == 'none')
         return reducer;
 
     return (state: any, actions: any) => {
         const newState = reducer(state, actions);
-        if (state !== newState)
+        if (state !== newState) {
             saveLastSavedState(cachingOptions, newState);
+        }
+        return newState;
+    }
+};
+
+
+export const addCachingToReducer = (reducer: ReducerType, cachingOptions: CachingOptions, propName: string) => {
+    if (cachingOptions.cacheMethod == 'none')
+        return reducer;
+
+    return (state: any, actions: any) => {
+        const newState = reducer(state, actions);
+        saveLastSavedState(cachingOptions, newState[propName]);
         return newState;
     }
 };

@@ -20,7 +20,7 @@ import {getVariableReducerActionTypeReactions} from "./Types/Variable";
 import {getObjectReducerActionTypeReactions} from "./Types/Object";
 import {getArrayReducerActionTypeReactions} from "./Types/Array";
 import {getFlagReducerActionTypeReactions} from "./Types/Flag";
-import {addCachingToReducer, readLastSavedState} from "./utils/cacheUtils";
+import {addCachingToAllReducer, addCachingToReducer, readLastSavedState} from "./utils/cacheUtils";
 
 interface ReducerOptions {
     cachingOptions?: CachingOptions;
@@ -111,7 +111,7 @@ export default class ReducerCreator {
                         `ReduxState_${cacheName}`,
                     cacheMethod: options && options.cachingOptions && options.cachingOptions.cacheMethod || 'none'
                 };
-                const newReaction = addCachingToReducer(reactions[key], cachingOptions);
+                const newReaction = addCachingToReducer(reactions[key], cachingOptions, keyParts[1]);
                 const cachedVal = readLastSavedState(cachingOptions);
                 if (cachedVal)
                     this._reducersLastSavedState[cacheName] = cachedVal;
@@ -138,7 +138,7 @@ export default class ReducerCreator {
             this._options
         );
 
-        reducer = addCachingToReducer(reducer, cachingOptions);
+        reducer = addCachingToAllReducer(reducer, cachingOptions);
 
         return reducer;
     }

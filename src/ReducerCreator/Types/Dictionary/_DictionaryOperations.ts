@@ -1,11 +1,13 @@
 export const addOrReplaceKeyValuesToDictionary = (dictionary: { [key: string]: any }, keyValues: { key: string, value: any }[]) => {
-    return replaceKeyValuesToDictionaryIfExists(dictionary, keyValues)
-        || addKeyValuesToDictionaryIfNotExist(dictionary, keyValues);
+    const isChanged1 = replaceKeyValuesToDictionaryIfExists(dictionary, keyValues);
+    const isChanged2 = addKeyValuesToDictionaryIfNotExist(dictionary, keyValues);
+    return isChanged1 || isChanged2;
 };
 
 export const addOrMergeKeyValuesToDictionary = (dictionary: { [key: string]: any }, keyValues: { key: string, value: any }[]) => {
-    return mergeKeyValuesToDictionaryIfExists(dictionary, keyValues)
-        || addKeyValuesToDictionaryIfNotExist(dictionary, keyValues);
+    const isChanged1 = mergeKeyValuesToDictionaryIfExists(dictionary, keyValues);
+    const isChanged2 = addKeyValuesToDictionaryIfNotExist(dictionary, keyValues);
+    return isChanged1 || isChanged2;
 };
 
 export const mergeKeyValuesToDictionaryIfExists = (dictionary: { [key: string]: any }, keyValues: { key: string, value: any }[]) => {

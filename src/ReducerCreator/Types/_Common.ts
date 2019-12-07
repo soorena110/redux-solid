@@ -21,19 +21,4 @@ const addEventsToReducer = (reducer: (state: any, action: any) => any, reducerOp
     }
 };
 
-
-const addCachingToReducer = (reducer: (state: any, action: any) => any, reducerOptions: BaseReducerOptions) => {
-    // return (state: any, action: any) => {
-    //     if (reducerOptions.cacheMethod == 'none')
-    //         return reducer;
-    //
-    //     const newState = reducer(state, action);
-    //
-    //     if (reducerOptions.events && reducerOptions.events.onReduced)
-    //         reducerOptions.events.onReduced({state: newState, action});
-    //
-    //     return newState;
-    // }
-};
-
 export const onlyOneExists = (...params: any) => params.filter((p: any) => p).length == 1;
