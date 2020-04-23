@@ -47,6 +47,7 @@ export const addHelpReactionToReactionDictionary = (reactions: { [actionType: st
     };
 };
 
+
 export const addResetToReactions = (reactions: { [actionType: string]: Reaction }, initialState: any) => {
     initialState = clone(initialState);
     reactions['reset'] = () => clone(initialState);

@@ -1,7 +1,7 @@
 import store from "./createStore";
 
 store.dispatch({
-    "type": "add/replace_myMap",
+    "type": "add/replace_StockWatchs",
     "data": [{
         "isin": "IRO1FOLD0001",
         "last": 2494,
@@ -29,33 +29,33 @@ store.dispatch({
 });
 
 
-store.dispatch({
-    "type": "add/replace_myMap2",
-    "data": [{
-        "id": "IRR3BNOP0101",
-        "name": "نوینح",
-        "englishName": "BNOX1",
-        "description": "بیمه نوین",
-        "totalShares": 0,
-        "baseVolume": 1,
-        "minOrderCount": 1,
-        "maxOrderCount": 50000,
-        "tseId": 70335773040403700,
-        "sector": {"code": "66", "name": "بیمه وصندوق بازنشستگی به جزتامین اجتماعی", "superSectorCode": "0001"},
-        "subSector": {"code": "6611", "sectorCode": "66", "name": "فعالیتهای مالی و اجرائی"},
-        "board": {"code": "3", "name": "تابلو فرعی"},
-        "marketCode": "MARKET_Z1",
-        "marketName": "بازار اول فرابورس",
-        "validity": "VALID",
-        "createdAt": "2018-12-19T06:15:41",
-        "updatedAt": "2018-12-19T07:00:34",
-        "freeFloat": 0
-    }]
-});
+// store.dispatch({
+//     "type": "add/replace_Instruments",
+//     "data": [{
+//         "id": "IRR3BNOP0101",
+//         "name": "نوینح",
+//         "englishName": "BNOX1",
+//         "description": "بیمه نوین",
+//         "totalShares": 0,
+//         "baseVolume": 1,
+//         "minOrderCount": 1,
+//         "maxOrderCount": 50000,
+//         "tseId": 70335773040403700,
+//         "sector": {"code": "66", "name": "بیمه وصندوق بازنشستگی به جزتامین اجتماعی", "superSectorCode": "0001"},
+//         "subSector": {"code": "6611", "sectorCode": "66", "name": "فعالیتهای مالی و اجرائی"},
+//         "board": {"code": "3", "name": "تابلو فرعی"},
+//         "marketCode": "MARKET_Z1",
+//         "marketName": "بازار اول فرابورس",
+//         "validity": "VALID",
+//         "createdAt": "2018-12-19T06:15:41",
+//         "updatedAt": "2018-12-19T07:00:34",
+//         "freeFloat": 0
+//     }]
+// });
 
 
 store.dispatch({
-    "type": "add/replace_myMap",
+    "type": "add/replace_StockWatchs",
     "data": [{
         "isin": "IRO1FOLD0001",
         "last": 2499,

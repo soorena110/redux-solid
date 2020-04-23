@@ -9,7 +9,7 @@
     "build": "npm run clean & webpack -p --env.prod",
     "start": "webpack-dev-server -d --env.dev",
     "postbuild": "tsc --emitDeclarationOnly --declaration",
-    "deploy": "npm run build & npm run build:dev & npm run postbuild & npm publish --access=public"
+    "deploy": "npm run build & npm run postbuild & npm publish --access=public"
   },
   "repository": {
     "type": "git",

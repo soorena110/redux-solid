@@ -2,6 +2,7 @@ import {
     ArrayActionTypes,
     BooleanActionTypes,
     DictionaryActionTypes,
+    MapActionTypes,
     ObjectActionTypes,
     VariableActionTypes
 } from "./ActionTypes";
@@ -42,6 +43,11 @@ export interface DictionaryReducerOptions extends BaseReducerOptions {
     actionTypes?: DictionaryActionTypes[];
     recreateDictionaryOnObjectChange?: boolean;
     isArrayDictionary?: boolean;
+}
+
+export interface MapReducerOptions extends BaseReducerOptions {
+    actionTypes?: MapActionTypes[];
+    recreateMapOnObjectChange?: boolean;
 }
 
 

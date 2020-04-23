@@ -49,7 +49,21 @@ export const recreateDictionary = (dictionary: { [key: string]: any }, isArraDic
 };
 
 const getKeyValuesExistInDictionary = (dictionary: { [key: string]: any }, keyValues: { key: string, value: any }[]) =>
-    keyValues.filter(({key}) => dictionary && dictionary[key]);
+    keyValues.filter(({key, value}) => {
+        if (!key) {
+            console.error("key", key);
+            console.error("value", value);
+            throw new Error("The key is not valid");
+        }
+        return dictionary && dictionary[key]
+    });
 
 const getKeyValuesNotExistInDictionary = (dictionary: { [key: string]: any }, keyValues: { key: string, value: any }[]) =>
-    keyValues.filter(({key}) => !dictionary || !dictionary[key]);
+    keyValues.filter(({key, value}) => {
+        if (!key) {
+            console.error("key", key);
+            console.error("value", value);
+            throw new Error("The key is not valid");
+        }
+        return !dictionary || !dictionary[key]
+    });

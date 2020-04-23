@@ -9,7 +9,7 @@ import {
     BooleanReducerOptions,
     CachingOptions,
     DictionaryReducerOptions,
-    FlagReducerOptions,
+    FlagReducerOptions, MapReducerOptions,
     ObjectReducerOptions,
     Reaction,
     VariableReducerOptions
@@ -21,6 +21,7 @@ import {getObjectReducerActionTypeReactions} from "./Types/Object";
 import {getArrayReducerActionTypeReactions} from "./Types/Array";
 import {getFlagReducerActionTypeReactions} from "./Types/Flag";
 import {addCachingToAllReducer, addCachingToReducer, readLastSavedState} from "./utils/cacheUtils";
+import {getMapReducerActionTypeReactions} from "./Types/Map";
 
 interface ReducerOptions {
     cachingOptions?: CachingOptions;
@@ -54,6 +55,13 @@ export default class ReducerCreator {
     withDictionaryReducer(name: string, dataObjectKeyName = 'id', dictionaryOptions?: DictionaryReducerOptions) {
         const newReactions = getDictionaryReducerActionTypeReactions(name, dataObjectKeyName, this._options, dictionaryOptions);
         this.addReactions(newReactions, dictionaryOptions);
+        this._reducerNames.push(name);
+        return this;
+    }
+
+    withMapReducer(name: string, dataObjectKeyName = 'id', mapOptions?: MapReducerOptions) {
+        const newReactions = getMapReducerActionTypeReactions(name, dataObjectKeyName, this._options, mapOptions);
+        this.addReactions(newReactions, mapOptions);
         this._reducerNames.push(name);
         return this;
     }

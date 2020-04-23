@@ -6,6 +6,9 @@ export type BooleanActionTypes = 'Set' | 'True' | 'False' | 'Clear' | 'Toggle';
 export type DictionaryActionTypes = 'Set' | 'Add' | 'Add/Ignore' | 'Add/Replace' | 'Add/Merge' |
     'Replace' | 'Merge' | 'Remove' | 'Clear';
 
+export type MapActionTypes = 'Set' | 'Add' | 'Add/Ignore' | 'Add/Replace' | 'Add/Merge' |
+    'Replace' | 'Merge' | 'Remove' | 'Clear';
+
 export type ObjectActionTypes = 'Set' | 'Clear' | 'Merge';
 
 export type VariableActionTypes = 'Set' | 'Clear';
