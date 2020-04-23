@@ -27,9 +27,8 @@ export const marketReducer = new ReducerCreator()
         recreateDictionaryOnObjectChange: false,
         events: {onReducing: e => stockWatch_addComputableVariables(e.action)}
     })
-    .withMapReducer('myMap', 'isin', {
+    .withMapReducer('myMap', 'id', {
         recreateMapOnObjectChange: false,
-        cachingOptions: {cacheMethod: 'localStorage'}
     })
     .withMapReducer('myMap2', 'id', {
         recreateMapOnObjectChange: false,

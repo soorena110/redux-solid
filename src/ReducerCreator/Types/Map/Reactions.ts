@@ -43,7 +43,7 @@ export const getMapReactionOfActionType = (name: string, actionTypes: MapActionT
                 const isAnyItemAdded = addKeyValuesToMapIfNotExist(state[name], keyValues);
 
                 if (isAnyItemAdded || mapOptions.recreateMapOnObjectChange != false)
-                    state[name] = recreateMap(state[name], );
+                    state[name] = recreateMap(state[name],);
                 return {...state}
             };
         case 'Add/Merge':
@@ -54,7 +54,7 @@ export const getMapReactionOfActionType = (name: string, actionTypes: MapActionT
                 const isAnyItemAdded = addOrMergeKeyValuesToMap(state[name], keyValues);
 
                 if (isAnyItemAdded || mapOptions.recreateMapOnObjectChange != false)
-                    state[name] = recreateMap(state[name], );
+                    state[name] = recreateMap(state[name],);
                 return {...state}
             };
         case 'Replace':
@@ -63,7 +63,7 @@ export const getMapReactionOfActionType = (name: string, actionTypes: MapActionT
                 replaceKeyValuesToMapIfExists(state[name], keyValues);
 
                 if (mapOptions.recreateMapOnObjectChange != false)
-                    state[name] = recreateMap(state[name], );
+                    state[name] = recreateMap(state[name],);
                 return {...state}
             };
         case 'Merge':
@@ -72,7 +72,7 @@ export const getMapReactionOfActionType = (name: string, actionTypes: MapActionT
                 mergeKeyValuesToMapIfExists(state[name], keyValues);
 
                 if (mapOptions.recreateMapOnObjectChange != false)
-                    state[name] = recreateMap(state[name], );
+                    state[name] = recreateMap(state[name],);
                 return {...state}
             };
         case 'Remove':
@@ -111,10 +111,17 @@ const getKeyValuesFromAction = (action: any, dataObjectKeyName: string): { key: 
         else if (action.keyValue.key && action.keyValue.value)  // if action.keyValue is typeof { key: string, value: string }
             return [action.keyValue];
     } else if (action.data) {// for MapActionType3
-        if (Array.isArray(action.data)) // if action.data is typeof object[]
-            return action.data.map((d: any) => ({key: d[dataObjectKeyName], value: d}));
-        else  // if action.data is typeof object
-            return [{key: action.data[dataObjectKeyName], value: action.data}];
+        const data = Array.isArray(action.data) ? action.data : [action.data];// if action.data is typeof object[]
+        return action.data.map((d: any) => {
+            const key = d[dataObjectKeyName];
+            if (!key) {
+                console.error("dataObjectKeyName", dataObjectKeyName);
+                console.error("key", key);
+                console.error("value", d);
+                throw new Error("The key is not valid");
+            }
+            return {key, value: d};
+        });
     } else if (action.map)   // for MapActionType4
         return Array.from(action.map.entries()).map(([key, value]: any) => ({key, value}));
 

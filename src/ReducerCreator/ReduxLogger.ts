@@ -42,6 +42,7 @@ const monitorReducerEnhancer = (createStore: any) => (
         ReduxLogger.groupCollapse('dispatch', action.type);
         ReduxLogger.log('prevState', state);
         ReduxLogger.log('nextState', newState);
+        ReduxLogger.log('action', action);
         ReduxLogger.log('executeTime', diff);
         ReduxLogger.groupEnd();
 
