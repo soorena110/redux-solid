@@ -77,7 +77,7 @@ export const getMapReactionOfActionType = (name: string, actionTypes: MapActionT
             };
         case 'Remove':
             return (state: any, action: any) => {
-                const keys: string[] = Array.isArray(action.key) ? action.key : [action.key];
+                const keys = getKeyValuesFromAction(action, dataObjectKeyName).map(r => r.key);
 
                 const isAnyItemRemoved = removeKeyFromMapIfExists(state[name], keys);
                 if (isAnyItemRemoved || mapOptions.recreateMapOnObjectChange != false)

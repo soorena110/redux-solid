@@ -27,7 +27,7 @@ export const addKeyValuesToMapIfNotExist = (map: Map<any, any>, keyValues: { key
 };
 
 export const removeKeyFromMapIfExists = (map: Map<any, any>, keys: any[]) => {
-    const existingKeyValues = keys.map(key => map.has(key));
+    const existingKeyValues = keys.filter(key => map.has(key));
     existingKeyValues.forEach(key => map.delete(key));
     return existingKeyValues.length > 0;
 };
